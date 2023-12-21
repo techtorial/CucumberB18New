@@ -38,6 +38,18 @@ public class ProductsWorkPage {
     WebElement saveButton;
     @FindBy(xpath = "//tr[1]//td")
     List<WebElement> alLData;
+    @FindBy(xpath = "//select[@id='category_id']")
+    WebElement category;
+    @FindBy(xpath = "//select[@id='sub_category']")
+    WebElement sub_category;
+    @FindBy(xpath = "//a[contains(@id,'dropdownMenuLink')]")
+    List<WebElement> actionButtons;
+    @FindBy(xpath = "//a[.='View']")
+    List<WebElement> viewButtons;
+    @FindBy(xpath = "//p[contains(text(),'Lifting')]")
+    WebElement productName;
+    @FindBy(xpath = "//p[contains(text(),'Mobile')]")
+    WebElement subCategory;
 
     public void pictureAndSave(String location) throws InterruptedException {
         chooseFile.sendKeys(location);
@@ -70,6 +82,21 @@ public class ProductsWorkPage {
         for(int i=3;i<alLData.size()-1;i++){
             Assert.assertEquals(expectedInformation.get(i),BrowserUtils.getText(alLData.get(i)));
         }
+    }
+
+    public void filterCategories(String category,String subCategory){
+        BrowserUtils.selectBy(this.category,category,"text");
+        BrowserUtils.selectBy(this.sub_category,subCategory,"text");
+    }
+
+    public void clickActionAndViewButton(){
+        actionButtons.get(0).click();
+        viewButtons.get(0).click();
+    }
+
+    public void categoryInformation(String expectedCategory,String expectedSubCategory){
+        Assert.assertEquals(expectedCategory,BrowserUtils.getText(productName));
+        Assert.assertEquals(expectedSubCategory,BrowserUtils.getText(subCategory));
     }
 
 

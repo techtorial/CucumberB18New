@@ -36,4 +36,20 @@ public class AddProductStepDef {
     public void user_validates_product_details_from_table(String expectedProductName, String expectedPrice, String canPurchase) throws InterruptedException {
     productsWorkPage.allInformation(expectedProductName,expectedPrice,canPurchase);
     }
+    @When("User clicks Products Button")
+    public void user_clicks_products_button() {
+    mainWorkPage.clickProductsButton();
+    }
+    @When("User selects {string} and {string} for categories")
+    public void user_selects_and_for_categories(String category, String subcategory) {
+    productsWorkPage.filterCategories(category,subcategory);
+    }
+    @When("User clicks three dots and view button from ProductPage")
+    public void user_clicks_three_dots_and_view_button_from_product_page() {
+    productsWorkPage.clickActionAndViewButton();
+    }
+    @Then("User validates {string} and {string} from action view")
+    public void user_validates_and_from_action_view(String expectedCategory, String expectedSubCategory) {
+    productsWorkPage.categoryInformation(expectedCategory,expectedSubCategory);
+    }
 }
