@@ -1,29 +1,36 @@
 package com.test.techtorialwork.stepdefinitions;
 
+import com.test.techtorialwork.pages.MainWorkPage;
+import com.test.techtorialwork.pages.ProductsWorkPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import utils.DriverHelper;
 
 public class AddProductStepDef {
-
+    WebDriver driver= DriverHelper.getDriver();
+    MainWorkPage mainWorkPage=new MainWorkPage(driver);
+    ProductsWorkPage productsWorkPage=new ProductsWorkPage(driver);
     @When("User clicks Products Button on the left side and AddProductButton from ProductPage")
     public void user_clicks_products_button_on_the_left_side_and_add_product_button_from_product_page() {
-
+    mainWorkPage.clickProductsButton();
+    productsWorkPage.clickAddProductButton();
     }
     @When("User provides {string} and {string} to the product details boxes")
-    public void user_provides_and_to_the_product_details_boxes(String string, String string2) {
-
+    public void user_provides_and_to_the_product_details_boxes(String productName, String price) {
+    productsWorkPage.provideProductInformation(productName,price);
     }
     @When("User selects {string},{string},and {string} from drop-downs")
-    public void user_selects_and_from_drop_downs(String string, String string2, String string3) {
-
+    public void user_selects_and_from_drop_downs(String category, String subCategory, String tax) {
+    productsWorkPage.provideDropDownInformation(category,subCategory,tax);
     }
     @When("User clicks purchase check box and add {string} into the description")
-    public void user_clicks_purchase_check_box_and_add_into_the_description(String string) {
-
+    public void user_clicks_purchase_check_box_and_add_into_the_description(String description) {
+    productsWorkPage.checkBoxAndDescription(description);
     }
     @When("User provides picture {string} and click save button")
-    public void user_provides_picture_and_click_save_button(String string) {
-
+    public void user_provides_picture_and_click_save_button(String location) {
+    productsWorkPage.pictureAndSave(location);
     }
     @Then("User validates product details {string},{string},{string},{string} from table")
     public void user_validates_product_details_from_table(String string, String string2, String string3, String string4) {

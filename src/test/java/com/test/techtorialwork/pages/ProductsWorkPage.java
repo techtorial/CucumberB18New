@@ -34,20 +34,28 @@ public class ProductsWorkPage {
     @FindBy(xpath = "//button[@id='save-product']")
     WebElement saveButton;
 
-    public void addProductFunctionality(String nameOfProduct,String price,String categoryOfProduct,
-                                        String subCategoryOfProduct,String taxOfProduct, String description,String location){
+    public void pictureAndSave(String location){
+        chooseFile.sendKeys(location);
+        saveButton.click();
+    }
+    public void clickAddProductButton(){
         addProductButton.click();
-        this.nameOfProduct.sendKeys(nameOfProduct);
+    }
+    public void provideProductInformation(String productName,String price){
+        this.nameOfProduct.sendKeys(productName);
         this.price.sendKeys(price);
-        BrowserUtils.selectBy(this.categoryOfProduct,categoryOfProduct,"text");
-        BrowserUtils.selectBy(this.subCategoryOfProduct,subCategoryOfProduct,"text");
-        BrowserUtils.selectBy(this.taxOfProduct,taxOfProduct,"text");
+    }
+
+    public void provideDropDownInformation(String category,String subCategory,String tax){
+        BrowserUtils.selectBy(this.categoryOfProduct,category,"text");
+        BrowserUtils.selectBy(this.subCategoryOfProduct,subCategory,"text");
+        BrowserUtils.selectBy(this.taxOfProduct,tax,"value");
+    }
+    public void checkBoxAndDescription(String description){
         Assert.assertFalse(purchaseBox.isSelected());
         purchaseBox.click();
         Assert.assertTrue(purchaseBox.isSelected());
         this.description.sendKeys(description);
-        chooseFile.sendKeys(location);
-        saveButton.click();
     }
 
 
