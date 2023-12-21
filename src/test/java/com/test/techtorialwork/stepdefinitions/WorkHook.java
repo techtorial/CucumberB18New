@@ -2,7 +2,9 @@ package com.test.techtorialwork.stepdefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.WebDriver;
+import utils.BrowserUtils;
 import utils.ConfigReader;
 import utils.DriverHelper;
 
@@ -17,7 +19,8 @@ public class WorkHook {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown(Scenario scenario){
+        BrowserUtils.getScreenShotWithCucumber(driver,scenario);
 //        driver.quit();
     }
 }

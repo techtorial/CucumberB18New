@@ -14,7 +14,7 @@ Scenario: Negative Login Functionality(Incorrect email and password)
 #  Given User validates the title is 'techtorial' from LoginPage
 #  And User validates the log_in is visible on the page
   When User provides 'ahmet@example.com' and '234234' to the loginPage
-  Then User validates 'These credentials do not match our records.' and 'rgba(211, 0, 0, 1)' from loginPage
+  Then User validates 'These credentials do not matcsdsdh our records.' and 'rgba(211, 0, 0, 1)' from loginPage
 
 
 
