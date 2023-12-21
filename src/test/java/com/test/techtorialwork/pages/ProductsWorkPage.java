@@ -36,6 +36,7 @@ public class ProductsWorkPage {
 
     public void addProductFunctionality(String nameOfProduct,String price,String categoryOfProduct,
                                         String subCategoryOfProduct,String taxOfProduct, String description,String location){
+        addProductButton.click();
         this.nameOfProduct.sendKeys(nameOfProduct);
         this.price.sendKeys(price);
         BrowserUtils.selectBy(this.categoryOfProduct,categoryOfProduct,"text");
