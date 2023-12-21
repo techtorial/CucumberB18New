@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ProductsWorkPage {
 
     public ProductsWorkPage(WebDriver driver){
@@ -33,8 +36,10 @@ public class ProductsWorkPage {
     WebElement chooseFile;
     @FindBy(xpath = "//button[@id='save-product']")
     WebElement saveButton;
+    @FindBy(xpath = "//tr[1]//td")
+    List<WebElement> alLData;
 
-    public void pictureAndSave(String location){
+    public void pictureAndSave(String location) throws InterruptedException {
         chooseFile.sendKeys(location);
         saveButton.click();
     }
@@ -43,6 +48,7 @@ public class ProductsWorkPage {
     }
     public void provideProductInformation(String productName,String price){
         this.nameOfProduct.sendKeys(productName);
+        this.price.clear();
         this.price.sendKeys(price);
     }
 
@@ -58,6 +64,13 @@ public class ProductsWorkPage {
         this.description.sendKeys(description);
     }
 
+    public void allInformation(String productName,String price,String canPurchase) throws InterruptedException {
+        Thread.sleep(2000);
+        List<String> expectedInformation= Arrays.asList("","","",productName,price,canPurchase,"");
+        for(int i=3;i<alLData.size()-1;i++){
+            Assert.assertEquals(expectedInformation.get(i),BrowserUtils.getText(alLData.get(i)));
+        }
+    }
 
 
 

@@ -7,5 +7,5 @@ Feature: Testing Adding Products Functionality in TechtorialWork Website
     And User selects 'Lifting and Material Handling Equipment','Mobile Cranes',and '1' from drop-downs
     And User clicks purchase check box and add 'It is a good product' into the description
     And User provides picture '/Users/techtorial/Downloads/usa.png' and click save button
-    Then User validates product details 'true','Truck-Mounted Crane','16500','Allowed' from table
+    Then User validates product details 'Truck-Mounted Crane','$16,500.00','Allowed' from table
 

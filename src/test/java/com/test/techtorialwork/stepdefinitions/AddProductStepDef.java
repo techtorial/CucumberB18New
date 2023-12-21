@@ -29,11 +29,11 @@ public class AddProductStepDef {
     productsWorkPage.checkBoxAndDescription(description);
     }
     @When("User provides picture {string} and click save button")
-    public void user_provides_picture_and_click_save_button(String location) {
+    public void user_provides_picture_and_click_save_button(String location) throws InterruptedException {
     productsWorkPage.pictureAndSave(location);
     }
-    @Then("User validates product details {string},{string},{string},{string} from table")
-    public void user_validates_product_details_from_table(String string, String string2, String string3, String string4) {
-
+    @Then("User validates product details {string},{string},{string} from table")
+    public void user_validates_product_details_from_table(String expectedProductName, String expectedPrice, String canPurchase) throws InterruptedException {
+    productsWorkPage.allInformation(expectedProductName,expectedPrice,canPurchase);
     }
 }
