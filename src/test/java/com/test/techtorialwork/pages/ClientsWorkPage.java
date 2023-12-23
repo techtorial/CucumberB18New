@@ -1,11 +1,14 @@
 package com.test.techtorialwork.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ClientsWorkPage {
@@ -36,8 +39,8 @@ public class ClientsWorkPage {
     WebElement companyShippingAddress;
     @FindBy(xpath = "//button[@id='save-client-form']")
     WebElement saveButton;
-    @FindBy(xpath = "//div[@class='media-body']")
-    List<WebElement> allNamesAndCompany;
+    @FindBy(xpath = "//tbody//tr[@role='row']//td")
+    List<WebElement> allInformation;
 
     public void clientInformation(String name,String email,String country,String mobile) throws InterruptedException {
         addClientButton.click();
@@ -68,10 +71,15 @@ public class ClientsWorkPage {
     }
     public void saveAndValidate(String expectedClientName,String expectedCompanyName,
                                 String expectedEmail,String expectedStatus) throws InterruptedException {
+        String date1= new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         saveButton.click();
         Thread.sleep(1000);
+            Assert.assertTrue(BrowserUtils.getText(allInformation.get(2)).contains(expectedClientName));
+            Assert.assertTrue(BrowserUtils.getText(allInformation.get(2)).contains(expectedCompanyName));
+            Assert.assertTrue(BrowserUtils.getText(allInformation.get(3)).contains(expectedEmail));
+            Assert.assertEquals(expectedStatus,BrowserUtils.getText(allInformation.get(4)));
+            Assert.assertEquals(BrowserUtils.getText(allInformation.get(5)),date1);
+
     }
-
-
 
 }
