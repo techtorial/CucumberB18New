@@ -13,7 +13,11 @@ public class MainWorkPage {
     @FindBy(xpath = "//span[contains(text(),'Products')]")
     WebElement productsButton;
 
+    @FindBy(xpath = "//span[.='Clients']")
+    WebElement clientsButton;
+
     public void clickProductsButton(){
         productsButton.click();
     }
+    public void clickClientsButton(){clientsButton.click();}
 }
