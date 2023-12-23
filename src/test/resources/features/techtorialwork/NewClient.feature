@@ -1,14 +1,14 @@
-
-
+@regression
 Feature: Testing New Client Create,Search and Order Functionality
 
   Scenario: Happy Path create functionality for new client
     Given User provides username and password to the loginPage
     When User clicks Clients button
-    And User clicks add client and provides 'John Doe', 'john.doe66@example.com','United States','3147353233' for ClientPage
+    And User clicks add client and provides 'John Doe', 'john.doe60@example.com','United States','3147353233' for ClientPage
     And User provides company information 'Doe Construction Inc.','https://www.doeconstruction.com','31442423322'
     And User provides address information '456 Oak Avenue, Springfield, IL, 62701','789 Birch Lane, Springfield, IL, 62702'
-    Then User clicks save button and validates 'John Doe','Doe Construction Inc.','john.doe66@example.com','Active' from table.
+    Then User clicks save button and validates 'John Doe','Doe Construction Inc.','john.doe60@example.com','Active' from table.
+
 
 
 

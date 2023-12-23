@@ -1,3 +1,4 @@
+@regression
 Feature: Testing Adding Products Functionality in TechtorialWork Website
 
   Scenario: Happy Path Product Addition Functionality
