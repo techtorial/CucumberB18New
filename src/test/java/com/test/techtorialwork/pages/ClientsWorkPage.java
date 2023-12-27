@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -71,14 +74,14 @@ public class ClientsWorkPage {
     }
     public void saveAndValidate(String expectedClientName,String expectedCompanyName,
                                 String expectedEmail,String expectedStatus) throws InterruptedException {
-        String date1= new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String currentDateGMT = LocalDateTime.now(ZoneId.of("GMT")).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         saveButton.click();
         Thread.sleep(1000);
             Assert.assertTrue(BrowserUtils.getText(allInformation.get(2)).contains(expectedClientName));
             Assert.assertTrue(BrowserUtils.getText(allInformation.get(2)).contains(expectedCompanyName));
             Assert.assertTrue(BrowserUtils.getText(allInformation.get(3)).contains(expectedEmail));
             Assert.assertEquals(expectedStatus,BrowserUtils.getText(allInformation.get(4)));
-            Assert.assertEquals(BrowserUtils.getText(allInformation.get(5)),date1);
+            Assert.assertEquals(BrowserUtils.getText(allInformation.get(5)),currentDateGMT);
 
     }
 
