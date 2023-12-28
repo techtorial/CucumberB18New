@@ -13,9 +13,13 @@ Feature: Testing the Search Product Functionality
       | Pin         | Pin - Etsy    |
 
 #Command+Option+L
-#  Scenario: Search Functionality Happy Path for Etsy Key
-#    When User searches 'Key' for Etsy
-#    Then User validates the title 'Key - Etsy' from Etsy
+
+  Scenario: Search Functionality Happy Path for Etsy Key
+    When User searches for Etsy
+      | productName | Key |
+    Then User validates the title from Etsy
+      | Key - Etsy |
+
 #
 #  Scenario: Search Functionality Happy Path for Etsy Pin
 #    When User searches 'Pin' for Etsy
